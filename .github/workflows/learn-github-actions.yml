@@ -24,9 +24,12 @@ jobs:
 
       - name: Run the tests
         run: npm test
+        
+      - name: Run test coverage
+        run: npm test -- --coverage
+        
+      - name: Upload test covertage
+        run: codecov/codecov-action@v4.6
 
       - name: Build
         run: npm run build
-        env:
-          DEFAULT_BRANCH: master
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
