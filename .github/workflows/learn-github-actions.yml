@@ -13,23 +13,20 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
+
       - name: Set up Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Lint Code Base
+        uses: github/super-linter@v4
+
       - name: Install dependencies
         run: npm install
-
-      - name: Run the tests
-        run: npm test
         
       - name: Run test coverage
         run: npm test -- --coverage
         
       - name: Upload test coverage
         uses: codecov/codecov-action@v2
-
-      - name: Build
-        run: npm run build
